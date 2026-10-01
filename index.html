@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Synthetic demo of a Mid-Market Solution Blueprint Console for an Attio Solutions Engineer: account stub, solution blueprint with cited fit chips, human gate, and deal or adoption impact.">
+<title>Attio · Mid-Market Solution Blueprint Console (Synthetic Demo)</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236e56f8'/%3E%3Cpath d='M9 20V9h5.6c3 0 4.9 1.5 4.9 4.2 0 2-1.1 3.3-2.9 3.9L21 20h-4.7l-3.9-3.2V20H9zm4.4-6.3h1.3c1 0 1.6-.5 1.6-1.4s-.6-1.4-1.6-1.4h-1.3v2.8z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#picker">Skip to account loader</a>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true"></span>
+    <span class="brand-name">Attio</span>
+    <span class="brand-sub">SE solution console</span>
+  </div>
+  <span class="demo-badge" title="Synthetic demo only. No accounts, no logins, no Attio API.">Synthetic demo</span>
+</header>
+
+<main class="shell">
+  <header class="hero">
+    <p class="eyebrow">Pre-sales + onboarding · Mid-market SE</p>
+    <h1>Mid-Market Solution Blueprint Console</h1>
+    <p class="tagline">Discovery turns into a demoable architecture, a human gate, and time-to-live impact. Accounts, blueprints, and impact are synthetic demo data. No real Attio workspace, no logins, no API calls.</p>
+  </header>
+
+  <section class="picker card" aria-labelledby="picker-title">
+    <h2 id="picker-title"><span class="step">1</span> Load a synthetic account</h2>
+    <div id="account-grid" class="account-grid"></div>
+  </section>
+
+  <section id="console" class="hidden" aria-labelledby="stub-title">
+    <div id="stub" class="card"></div>
+
+    <section class="block" aria-labelledby="blueprint-title">
+      <h2 id="blueprint-title"><span class="step">2</span> Solution blueprint</h2>
+      <div id="blueprint"></div>
+    </section>
+
+    <section class="block" aria-labelledby="gates-title">
+      <h2 id="gates-title"><span class="step">3</span> Human gate</h2>
+      <p class="block-note">Nothing goes live on its own. The SE owns the next move; the console keeps the blueprint and the impact in sync.</p>
+      <div id="gates" class="gates"></div>
+    </section>
+
+    <section id="migration-block" class="block hidden" aria-labelledby="migration-title">
+      <h2 id="migration-title">Migration checklist</h2>
+      <div id="migration"></div>
+    </section>
+
+    <section class="block" aria-labelledby="impact-title">
+      <h2 id="impact-title"><span class="step">4</span> Deal and adoption impact</h2>
+      <div id="impact"></div>
+    </section>
+  </section>
+</main>
+
+<footer class="shell">
+  <p>Synthetic prototype for a Solutions Engineer portfolio walkthrough. Built to match Attio craft: dark console, violet accents, object and workflow chips, large human-gate CTAs. No accounts, no sign-ins, no Attio API.</p>
+  <button id="reset" class="button button-quiet" type="button">Reset demo</button>
+</footer>
+
+<div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+<div id="live-region" class="visually-hidden" aria-live="polite"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

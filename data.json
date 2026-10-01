@@ -1,0 +1,245 @@
+{
+  "console": {
+    "eyebrow": "Pre-sales + onboarding · Mid-market SE",
+    "title": "Mid-Market Solution Blueprint Console",
+    "tagline": "Discovery turns into a demoable architecture, a human gate, and time-to-live impact. Accounts, blueprints, and impact are synthetic demo data for a Solutions Engineer portfolio walkthrough. No real Attio workspace, no logins, no API calls."
+  },
+  "accounts": [
+    {
+      "id": "lumenboard",
+      "name": "Lumenboard",
+      "initials": "LB",
+      "stage": "Series B SaaS · Mid-market",
+      "motion": "Outbound + product-led revenue. 41 reps across sales, SDR, and CS.",
+      "pain": "CRM lives in spreadsheets. Two CRM attempts failed in 24 months; pipeline data lands in Slack threads and email.",
+      "stack": ["Slack", "Email (Google Workspace)", "Stripe billing", "Spreadsheets"],
+      "stubNote": "Written from discovery notes. GTM stack is the standard Slack + email + billing shape for mid-market.",
+      "blueprint": [
+        {
+          "title": "Data model",
+          "intro": "Map the messy spreadsheets onto Attio objects. This is the architectural core of the solution.",
+          "items": [
+            { "label": "Companies, People, Deals",
+              "detail": "Three core objects replace the spreadsheet tabs. Deals attach to Companies; People attach to Companies and Deals.",
+              "cites": ["JD · architect data model", "attio.com · data model"] },
+            { "label": "Health score on Companies",
+              "detail": "Custom attribute combines product usage, billing status, and deal stage for the CS motion.",
+              "cites": ["JD · data model + reporting"] },
+            { "label": "Stage governance on Deals",
+              "detail": "Fixed pipeline with exit criteria so stage names stop drifting between teams.",
+              "cites": ["JD · RevOps consulting"] }
+          ]
+        },
+        {
+          "title": "Workflows",
+          "intro": "No-code workflow builder keeps the CRM current without a data team.",
+          "items": [
+            { "label": "Email sync into People records",
+              "detail": "Inbound and outbound email activity appears on the right People record, so Slack threads stop being the source of truth.",
+              "cites": ["attio.com · workflows"] },
+            { "label": "Deal stage automation",
+              "detail": "Workflow moves Deals on signature and billing events, with a manual approval step for exceptions.",
+              "cites": ["attio.com · workflows"] }
+          ]
+        },
+        {
+          "title": "API / MCP",
+          "intro": "Live context for GTM agents without brittle exports.",
+          "items": [
+            { "label": "REST API + webhooks",
+              "detail": "Stripe billing events push into Attio; pipeline changes push to the internal Slack channel.",
+              "cites": ["attio.com · API"] },
+            { "label": "MCP server for agents",
+              "detail": "Revenue agents query live deal and account context instead of stale spreadsheet snapshots.",
+              "cites": ["attio.com · MCP"] }
+          ]
+        },
+        {
+          "title": "Reporting",
+          "intro": "The pipeline report the CEO actually reads, standing on the data model.",
+          "items": [
+            { "label": "Pipeline + activity reporting",
+              "detail": "Forecast by stage, rep, and segment from the unified data model, not a weekly manual export.",
+              "cites": ["JD · reporting engine"] }
+          ]
+        },
+        {
+          "title": "Migration",
+          "intro": "Spreadsheet to go-live in one SE-owned cutover.",
+          "items": [
+            { "label": "Import template + field map",
+              "detail": "Columns map to Attio attributes before any rows move. No guessing at import time.",
+              "cites": ["JD · post-sale onboarding"] },
+            { "label": "Sandbox validation",
+              "detail": "Counts and samples validated in a sandbox before the production cutover.",
+              "cites": ["JD · architect deployments"] }
+          ]
+        }
+      ],
+      "migration": {
+        "summary": "Current data is clean spreadsheets. Migration is covered inside the onboarding plan: template, field map, sandbox validation.",
+        "items": [
+          { "label": "Import template from the spreadsheet", "detail": "Covered in the onboarding plan.", "covered": true },
+          { "label": "Field map: columns to Attio attributes", "detail": "Covered in the onboarding plan.", "covered": true },
+          { "label": "Sandbox validation before cutover", "detail": "Covered in the onboarding plan.", "covered": true }
+        ]
+      },
+      "escalate": {
+        "summary": "Commercial: $78k ACV, annual prepay, procurement intake pending. The AE owns packaging; the technical blueprint stays ready and the SE re-engages at technical handoff."
+      },
+      "impact": {
+        "stages": {
+          "ready":      { "label": "Blueprint ready", "chip": "chip-navy",  "ttl": "14 days", "flows": "0 of 3", "conf": "62%", "line": "Blueprint mapped from discovery. Run the mock demo to move toward go-live." },
+          "demo":       { "label": "Mock demo done", "chip": "chip-violet", "ttl": "10 days", "flows": "0 of 3", "conf": "71%", "line": "Demo ran on the prospect stack. Approve the onboarding plan to go live." },
+          "onboard":    { "label": "Onboarding", "chip": "chip-blue",    "ttl": "9 days",  "flows": "2 of 3", "conf": "76%", "line": "Onboarding approved. A mock demo first would lock the deal sooner." },
+          "live":       { "label": "Live", "chip": "chip-green",  "ttl": "6 days",  "flows": "3 of 3", "conf": "84%", "line": "Workflows running on live CRM data. Time-to-live improved by 8 days." }
+        }
+      }
+    },
+    {
+      "id": "corvid",
+      "name": "Corvid Analytics",
+      "initials": "CA",
+      "stage": "Series B analytics · Mid-market",
+      "motion": "Account-based outbound. 27 sellers, 3 territories.",
+      "pain": "40,000 rows of historical deals with duplicate owners, orphaned line items, and no stage governance. Reporting has been wrong for two quarters.",
+      "stack": ["Slack", "Email (Microsoft 365)", "Chargebee billing", "Legacy spreadsheet"],
+      "stubNote": "Written from discovery notes. This account is the historical-data migration path.",
+      "blueprint": [
+        {
+          "title": "Data model",
+          "intro": "Same object map as the standard blueprint, with a cleanup pass for legacy rows.",
+          "items": [
+            { "label": "Companies, People, Deals",
+              "detail": "Legacy rows map onto the core objects after dedupe and owner cleanup.",
+              "cites": ["JD · architect data model"] },
+            { "label": "Custom fields from legacy columns",
+              "detail": "Legacy custom fields map to Attio attributes before import, not after.",
+              "cites": ["JD · data model"] }
+          ]
+        },
+        {
+          "title": "Workflows",
+          "intro": "Stage governance is rebuildable, but only after the rows are clean.",
+          "items": [
+            { "label": "Stage governance map",
+              "detail": "Legacy stages map to one Attio pipeline with exit criteria. Workflow re-runs on imported records.",
+              "cites": ["attio.com · workflows"] }
+          ]
+        },
+        {
+          "title": "API / MCP",
+          "intro": "Live context replaces the wrong spreadsheet reports.",
+          "items": [
+            { "label": "REST API + webhooks",
+              "detail": "Billing events push into Attio; cleaned rows stay in sync with the billing system.",
+              "cites": ["attio.com · API"] },
+            { "label": "MCP server for agents",
+              "detail": "Revenue agents read live deal context once the import is validated.",
+              "cites": ["attio.com · MCP"] }
+          ]
+        },
+        {
+          "title": "Migration",
+          "intro": "Historical data is the single biggest risk. The SE owns the checklist.",
+          "items": [
+            { "label": "Checklist gates go-live",
+              "detail": "Go-live stays blocked until the migration checklist completes. No silent import.",
+              "cites": ["JD · post-sale onboarding"] }
+          ]
+        }
+      ],
+      "migration": {
+        "summary": "Go-live is blocked until every checklist item completes. Each item is a pre-recorded synthetic finding.",
+        "items": [
+          { "label": "Export all 40,000 deal rows", "detail": "Source: legacy spreadsheet, deals tab.", "covered": false },
+          { "label": "Dedupe owners and territory tags", "detail": "Finding: 6,201 duplicate owner rows.", "covered": false },
+          { "label": "Map legacy stages to the Attio pipeline", "detail": "Source: stage names across 14 tabs.", "covered": false },
+          { "label": "Map custom fields to Attio attributes", "detail": "Source: legacy column list, 63 columns.", "covered": false },
+          { "label": "Sandbox import and validate counts", "detail": "Method: Attio import validation report.", "covered": false },
+          { "label": "Re-run workflow triggers on imported records", "detail": "Method: workflow builder trigger re-run.", "covered": false }
+        ]
+      },
+      "escalate": {
+        "summary": "Commercial: renewal credit conversation is open. The AE owns that; the SE keeps driving the technical checklist in parallel."
+      },
+      "impact": {
+        "stages": {
+          "ready":          { "label": "Blueprint ready", "chip": "chip-navy",  "ttl": "Blocked", "flows": "0 of 3", "conf": "58%", "line": "40,000 historical rows block go-live. Open the migration path to start the checklist." },
+          "migration":      { "label": "Migration in progress", "chip": "chip-amber", "ttl": "Blocked", "flows": "0 of 3", "conf": "58%", "line": "Go-live blocked: migration checklist incomplete. SE works dedupe and stage mapping with the customer." },
+          "migration-done": { "label": "Migration ready", "chip": "chip-green", "ttl": "12 days", "flows": "1 of 3", "conf": "74%", "line": "Checklist complete. Go-live is unblocked; approve onboarding to schedule it." },
+          "demo":           { "label": "Mock demo done", "chip": "chip-violet", "ttl": "Blocked", "flows": "0 of 3", "conf": "63%", "line": "Demo done. The migration checklist still gates go-live." },
+          "demo-ready":     { "label": "Demo done · migration ready", "chip": "chip-violet", "ttl": "12 days", "flows": "1 of 3", "conf": "78%", "line": "Migration ready and demo done. Approve onboarding to go live." },
+          "live":           { "label": "Live", "chip": "chip-green",  "ttl": "6 days",  "flows": "3 of 3", "conf": "82%", "line": "Cleaned historical data live with governed stages. Time-to-live improved by 15 days." }
+        }
+      }
+    },
+    {
+      "id": "fixtric",
+      "name": "Fixtric",
+      "initials": "FX",
+      "stage": "Series B device ops · Mid-market",
+      "motion": "Field team + inside sales. 34 sellers.",
+      "pain": "Technical green light from the buyer, but commercial packing is unresolved: three-vendor bakeoff, procurement intake, and a security review request.",
+      "stack": ["Slack", "Email (Google Workspace)", "Stripe billing", "Field service tool"],
+      "stubNote": "Written from discovery notes. This account is the commercial escalation path.",
+      "blueprint": [
+        {
+          "title": "Data model",
+          "intro": "Standard object map tailored to field service motion.",
+          "items": [
+            { "label": "Companies, People, Deals",
+              "detail": "Core objects map the field service accounts and their install base.",
+              "cites": ["JD · architect data model"] }
+          ]
+        },
+        {
+          "title": "Workflows",
+          "intro": "Two workflows cover the motion and stay ready for sign-off.",
+          "items": [
+            { "label": "Install base tracking",
+              "detail": "Workflow keeps install base records current from service events.",
+              "cites": ["attio.com · workflows"] }
+          ]
+        },
+        {
+          "title": "API / MCP",
+          "intro": "Billing and service events in one live view.",
+          "items": [
+            { "label": "REST API + webhooks",
+              "detail": "Billing events push into Attio and keep the account record live.",
+              "cites": ["attio.com · API"] },
+            { "label": "MCP server for agents",
+              "detail": "Agents read live account context for procurement follow-ups.",
+              "cites": ["attio.com · MCP"] }
+          ]
+        },
+        {
+          "title": "Migration",
+          "intro": "No migration blockers found in discovery.",
+          "items": [
+            { "label": "Sandbox-ready import",
+              "detail": "Field service data exports clean. No blockers.",
+              "cites": ["JD · architect deployments"] }
+          ]
+        }
+      ],
+      "migration": {
+        "summary": "No migration blockers in discovery. Import is sandbox-ready once the commercial path clears.",
+        "items": [
+          { "label": "Sandbox-ready import", "detail": "Finding: field service data exports clean, no blockers.", "covered": true }
+        ]
+      },
+      "escalate": {
+        "summary": "Commercial: three-vendor bakeoff, procurement intake, and a security review request. The AE owns packaging and timing; the SE stays the technical point of contact and the blueprint stays ready."
+      },
+      "impact": {
+        "stages": {
+          "ready":     { "label": "Blueprint ready", "chip": "chip-navy",  "ttl": "14 days", "flows": "0 of 3", "conf": "64%", "line": "Technical blueprint ready. Commercial questions belong to the AE." },
+          "demo":      { "label": "Demo readied for procurement", "chip": "chip-violet", "ttl": "14 days", "flows": "0 of 3", "conf": "68%", "line": "Mock demo readied for procurement. Commercial packing stays with the AE." },
+          "escalated": { "label": "Escalated to AE", "chip": "chip-orange", "ttl": "14 days", "flows": "0 of 3", "conf": "64%", "line": "AE owns commercial packing. Blueprint stays ready; the SE re-engages at technical handoff." }
+        }
+      }
+    }
+  ]
+}
