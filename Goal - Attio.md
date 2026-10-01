@@ -51,8 +51,8 @@ Build a working **Mid-Market Solution Blueprint Console** for Attio Solutions En
 **Hard product rule:** Do NOT center the hero on a Rubric Lens strip, pass/fail spreadsheet, or graded eval table. Thin fit chips are OK as secondary UI only. The hero is customer stub → solution blueprint → human gate → deal/adoption impact.
 
 ## Live demo
-- Status: not built yet
-- Link: TBD
+- Status: Live
+- Link: https://amiteshdwivedijhu-ship-it.github.io/attio-blueprint-console/
 - What it is: Attio-styled Mid-Market Solution Blueprint Console (customer GTM stub → data model + workflows + migration packet → Demo / Onboard / Need migration / Escalate to AE → impact)
 
 ## Scope (fits 2 hours)
